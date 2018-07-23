@@ -1,12 +1,17 @@
 class Raindrops
+  WEATHERS = {
+    3 => 'Pling',
+    5 => 'Plang',
+    7 => 'Plong'
+  }
+
   def self.convert number
-    string = ''
+    weather = ''
 
-    string += 'Pling' if (number % 3).zero?
-    string += 'Plang' if (number % 5).zero?
-    string += 'Plong' if (number % 7).zero?
-    return number.to_s if string.empty?
+    weather << WEATHERS[3] if (number % 3).zero?
+    weather << WEATHERS[5] if (number % 5).zero?
+    weather << WEATHERS[7] if (number % 7).zero?
 
-    string
+    weather.empty? ? number.to_s : weather
   end
 end
