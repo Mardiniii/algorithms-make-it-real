@@ -1,7 +1,7 @@
 require "minitest/autorun"
 require_relative 'raindrops'
 
-class MagicBallTest < Minitest::Test
+class RaindropsTest < Minitest::Test
   def test_check_modulus_true
     today = Raindrops.new(10)
     assert today.check_modulus(9,9) == true
@@ -64,7 +64,7 @@ class MagicBallTest < Minitest::Test
 
   def test_if_it_is_rainning_no
     today = Raindrops.new(34)
-    assert today.is_raining == 34
+    assert today.is_raining == "34"
   end
 
   def test_if_it_is_rainning_pling

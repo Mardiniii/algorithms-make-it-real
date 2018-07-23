@@ -1,12 +1,13 @@
-class Raindrops 
+class Raindrops
   attr_accessor :number
 
   def initialize(number)
    @number = number
   end
-   
+
   def is_raining
-    "#{pling}#{plang}#{plong}" != "" ? "#{pling}#{plang}#{plong}" : @number
+    raining = "#{pling}#{plang}#{plong}"
+    raining != "" ? raining : @number.to_s
   end
 
   def pling
@@ -28,4 +29,4 @@ end
 
 weather = Raindrops.new(34)
 
-puts weather.is_raining
+p weather.is_raining
