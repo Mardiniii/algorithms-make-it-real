@@ -1,4 +1,5 @@
-class Raindrops
+
+class Raindrops 
   attr_accessor :number
 
   def initialize(number)
@@ -30,3 +31,4 @@ end
 weather = Raindrops.new(34)
 
 p weather.is_raining
+
