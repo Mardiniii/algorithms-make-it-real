@@ -29,3 +29,61 @@
 
 # expected worst-case time complexity is O(N*log(N));
 # expected worst-case space complexity is O(N) (not counting the storage required for input arguments)
+
+require "pry"
+ def solution(a,b,c)
+a.sort!
+b.sort!
+c.sort!
+ i = 1
+p recursion(a,b,c,i)
+ end
+ # Counting the number of correct options
+def recursion(a,b,c,i)
+  result = check_minimum_a_b(a[-(i)], b,c)
+      if check_minimum_a_b(a[-(i)], b, c) == 0
+        0
+      else
+        if i == a.length
+          result
+        else
+          result + recursion(a,b,c,i+1)
+        end
+      end
+end
+ def check_minimum_a_b(a1,b,c)
+  ab = false
+  i = 1 
+  count = 0
+    while !ab
+      if  a1 > b[-i]
+         ab = true
+      else
+        count += check_minimum_b_c(b[-i],c)
+        if i == b.length
+          ab = true
+        end
+        i += 1
+      end
+    end
+    count
+end
+ def check_minimum_b_c(b1,c)
+  ab = false
+  i = 1
+  j = 0
+    while !ab
+      if  b1 >= c[-i]        
+         ab = true
+      else
+        j += 1
+        if i == c.length
+          ab = true
+        end
+        i += 1
+      end
+    end
+    j
+end
+ solution([29, 50],[37,61],[37,70]) 
+  solution([29, 29],[61, 61],[70, 70]) 
