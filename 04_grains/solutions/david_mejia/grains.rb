@@ -4,29 +4,29 @@ class Grains
   def initialize
     @n = 64
     @grains = 0
-    @chessboard = []
+    @chessboard = [1]
     chessboard_grains
   end
 
   def chessboard_grains
-    @n.times { |i| @chessboard << 2**i }
+    (@n-1).times { |i| @chessboard << @chessboard[-1]*2  }
   end
 
-  def total_grains
+  def total
     @grains = @chessboard.sum
   end
 
-  def each_position(x:)
+  def each(x:)
     raise ArgumentError if x<1 || x>@n
     @chessboard[x-1]
   end
 end
 
 
-p chessboard = Grains.new
-p chessboard.chessboard
-p chessboard.total_grains
-p chessboard.each_position(x: 4)
+p grains = Grains.new
+p grains.chessboard
+p grains.total
+p grains.each(x: 4)
 
 
 
