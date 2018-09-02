@@ -1,32 +1,26 @@
 class Grains 
-  attr_accessor :grains, :chessboard, :n
-
-  def initialize
-    @n = 64
-    @grains = 0
+  def self.chessboard_grains
     @chessboard = [1]
-    chessboard_grains
+
+    (64-1).times { |i| @chessboard << @chessboard[-1]*2  }
   end
 
-  def chessboard_grains
-    (@n-1).times { |i| @chessboard << @chessboard[-1]*2  }
-  end
-
-  def total
+  def self.total
     @grains = @chessboard.sum
   end
 
-  def each(x:)
-    raise ArgumentError if x<1 || x>@n
+  def self.square(x)
+    raise ArgumentError if x < 1 || x > 64
+
+    chessboard_grains unless @chessboard
+
     @chessboard[x-1]
   end
 end
 
-
-p grains = Grains.new
-p grains.chessboard
-p grains.total
-p grains.each(x: 4)
-
-
+p Grains.square(16)
+p Grains.square(32)
+p Grains.square(8)
+p Grains.square(24)
+p Grains.square(44)
 

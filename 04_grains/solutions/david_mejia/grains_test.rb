@@ -1,50 +1,48 @@
-require "minitest/autorun"
+require 'minitest/autorun'
 require_relative 'grains'
 
-class Grain < Minitest::Test
-
-  def test_length_of_chessboard
-    grains = Grains.new
-    assert grains.chessboard.length == 64
+class GrainsTest < Minitest::Test
+  def test_1
+    assert_equal 1, Grains.square(1)
   end
 
-  def test_number_grains_for_4th_position
-    grains = Grains.new
-    assert grains.each(x: 4) == 8
+  def test_2
+    assert_equal 2, Grains.square(2)
   end
 
-  def test_number_grains_for_5th_position
-    grains = Grains.new
-    assert grains.each(x: 5) == 16
+  def test_3
+    assert_equal 4, Grains.square(3)
   end
 
-  def test_number_grains_for_16th_position
-    grains = Grains.new
-    assert grains.each(x: 16) == 32768
+  def test_4
+    assert_equal 8, Grains.square(4)
   end
 
-  def test_number_grains_for_32th_position
-    grains = Grains.new
-    assert grains.each(x: 32) == 2147483648
+  def test_16
+    assert_equal 32_768, Grains.square(16)
   end
 
-  def test_total_number_of_grains
-    grains = Grains.new
-    assert grains.total == 18446744073709551615
+  def test_32
+    assert_equal 2_147_483_648, Grains.square(32)
+  end
+
+  def test_64
+    assert_equal 9_223_372_036_854_775_808, Grains.square(64)
   end
 
   def test_square_0_raises_an_exception
-    grains = Grains.new
-    assert_raises(ArgumentError) { grains.each(x: 0) }
+    assert_raises(ArgumentError) { Grains.square(0) }
   end
 
   def test_negative_square_raises_an_exception
-    grains = Grains.new
-    assert_raises(ArgumentError) { grains.each(x: -1)}
+    assert_raises(ArgumentError) { Grains.square(-1) }
   end
 
   def test_square_greater_than_64_raises_an_exception
-    grains = Grains.new
-    assert_raises(ArgumentError) { grains.each(x: 65) }
+    assert_raises(ArgumentError) { Grains.square(65) }
+  end
+
+  def test_returns_the_total_number_of_grains_on_the_board
+    assert_equal 18_446_744_073_709_551_615, Grains.total
   end
 end
